@@ -12,6 +12,7 @@ markdown = "*"
 django-filter = "*"
 pygments = "*"
 pillow = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"
