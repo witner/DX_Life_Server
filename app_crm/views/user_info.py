@@ -26,7 +26,7 @@ def get_pic_code(request):
         img = Image.new('RGB', (pic_width, pic_height), color='white')
         draw = ImageDraw.Draw(img)
         # ttf_file_path = os.path.join(settings.BASE_DIR, 'app_c_rbac/static/ttf/经典行书简.TTF'),
-        font = ImageFont.truetype(os.path.join(settings.BASE_DIR, 'app_c_rbac/static/ttf/经典行书简.TTF'), size=text_size)
+        font = ImageFont.truetype(os.path.join(settings.BASE_DIR, 'app_crm/static/ttf/经典行书简.TTF'), size=text_size)
     pass
 
 
