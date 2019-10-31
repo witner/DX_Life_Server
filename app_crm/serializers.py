@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import *
 
 
-class UserSerializer(serializers.Serializer):
+class UserInfoSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     username = serializers.CharField()
     telephone = serializers.CharField()
