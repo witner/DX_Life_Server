@@ -18,6 +18,11 @@ class DoneView(APIView):
         pass
 
     def post(self, request):
+        """
+
+        :param request:
+        :return:
+        """
         serializer_obj = DoneSerializer(data=request.data)
         if serializer_obj.is_valid():
             serializer_obj.save()

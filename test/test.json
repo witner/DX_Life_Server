@@ -1,0 +1,12 @@
+// Event添加添加数据，数据格式为
+{
+  "title": "副书记方时间飞逝街坊邻居",
+  "start_date": "2019-10-31",
+  "start_time": "16:57:00",
+  "duration": 30,
+  "happiness": 0,
+  "health": 0,
+  "fulfillment": 0,
+  "event_id": 16,
+  "user_info_id": 1
+}
