@@ -6,6 +6,7 @@
 # 第三方模块
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 # 导入自定义模块
 from app_time.serializers import EventSerializer
 from app_time.models import Event
@@ -19,10 +20,6 @@ class EventView(APIView):
         :param request: 接受请求参数【parent_id、level】
         :return:
         """
-        response_dict = {
-            'code': 200,
-            'data': None,
-        }
 
         # 获取查询条件
         parent_id = request.query_params.get('parent_id', 0)
@@ -31,11 +28,8 @@ class EventView(APIView):
             parent_id = int(parent_id)
             level = int(level)
         except Exception:
-            response_dict.update({
-                'code': 400,
-                'data': '请求参数错误，不能为非数字',
-            })
-            return Response(response_dict)
+            content = {'error_msg': '请求参数错误，不能为非数字'}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
         else:
             # 数据库查询
             event_list = Event.objects.all()
@@ -46,10 +40,9 @@ class EventView(APIView):
                 event_list = event_list.filter(level=level)
 
             ret = EventSerializer(event_list, many=True)
-            response_dict.update({
-                'data': ret.data
-            })
-            return Response(response_dict)
+            return Response(ret.data)
+
+
 
 
 

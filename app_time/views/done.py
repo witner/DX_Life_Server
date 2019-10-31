@@ -1,9 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# 导入系统模块
+
+# 第三方模块
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
+# 导入自定义模块
 from app_time.serializers import DoneSerializer
-from app_time.models import *
+from app_time.models import Done
+# 设置环境变量
 
 
 class DoneView(APIView):
@@ -19,7 +25,7 @@ class DoneView(APIView):
 
     def post(self, request):
         """
-
+        添加数据
         :param request:
         :return:
         """
@@ -28,4 +34,4 @@ class DoneView(APIView):
             serializer_obj.save()
             return Response(serializer_obj.validated_data)
         else:
-            return Response(serializer_obj.errors)
+            return Response(serializer_obj.errors, status=status.HTTP_400_BAD_REQUEST)
