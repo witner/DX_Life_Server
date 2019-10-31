@@ -39,3 +39,6 @@ class UserInfo(models.Model):
     # # 用户对应角色
     # role = models.ManyToManyField(verbose_name='用户对应角色', to='Role', through='UserToRole',
     #                               through_fields=('user', 'role'), blank=True)
+
+    def __str__(self):
+        return self.username

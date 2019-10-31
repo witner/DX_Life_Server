@@ -10,5 +10,5 @@ from .views.user_info import get_pic_code
 urlpatterns = [
     # 登录、注销、注册
     # path('user/login/', UserLogin.as_view(), name='user_login'),
-    path('user/login/get_pic_code', get_pic_code, name='user_login'),
+    path('user/login/get_pic_code/', get_pic_code, name='user_login'),
 ]
