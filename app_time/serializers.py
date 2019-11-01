@@ -13,7 +13,7 @@ class EventSerializer(serializers.Serializer):
 
 
 class DoneSerializer(serializers.Serializer):
-    id = serializers.IntegerField(required=False)
+    id = serializers.IntegerField(required=False, read_only=True)
     title = serializers.CharField(max_length=128)
     start_date = serializers.DateField()
     start_time = serializers.TimeField()
