@@ -9,3 +9,9 @@ class DoneFilter(filters.FilterSet):
     class Meta:
         model = Done
         fields = ['start_date']
+
+
+class EventFilter(filters.FilterSet):
+    class Meta:
+        model = Event
+        fields = ['id', 'level', 'parent_id']

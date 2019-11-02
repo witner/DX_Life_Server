@@ -5,11 +5,26 @@ from app_time.models import *
 from app_crm.serializers import UserInfoSerializer
 
 
-class EventSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    title = serializers.CharField(max_length=32)
-    level = serializers.IntegerField()
-    # parent_id = serializers.IntegerField()
+class EventSerializer(serializers.ModelSerializer):
+    """
+    遇到问题：通过model方式定义serializers,解决自己指向自己的问题，通过depth深度控制显示父级
+    """
+    class Meta:
+        model = Event
+        fields = ('id', 'title', 'level', 'parent_id')
+        depth = 1
+
+    # id = serializers.IntegerField(required=False, read_only=True)
+    # title = serializers.CharField(max_length=32)
+    # level = serializers.IntegerField()
+    # # parent_id = serializers.IntegerField()
+    # # parent_id = serializers.
+
+    def create(self, validated_data):
+        obj = Event.objects.create(title=validated_data['title'],
+                                   level=validated_data['level'],
+                                   parent_id_id=validated_data['parent_id'])
+        return obj
 
 
 class DoneSerializer(serializers.Serializer):
