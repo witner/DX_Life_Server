@@ -10,6 +10,7 @@ urlpatterns = [
     path('publisher/detail', fbv.publisher_detail),
     path('publisher/delete', fbv.publisher_delete),
     path('author/add', fbv.author_add),
+    path('author/list', fbv.author_add),
     path('book/add', fbv.book_add),
     # 基于类的视图
     path('publisher/list', cbv.PublisherView.as_view()),
