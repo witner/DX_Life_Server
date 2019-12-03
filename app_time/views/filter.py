@@ -4,11 +4,11 @@ from django_filters import rest_framework as filters
 from app_time.models import *
 
 
-class DoneFilter(filters.FilterSet):
+class RecordFilter(filters.FilterSet):
     # start_date = filters.DateFilter(field_name='start_date', )
     class Meta:
-        model = Done
-        fields = ['start_date']
+        model = Record
+        fields = ['start_datetime']
 
 
 class EventFilter(filters.FilterSet):

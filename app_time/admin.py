@@ -7,7 +7,7 @@ from app_time.models import *
 class EventAdmin(admin.ModelAdmin):
     # 列表页属性
     # 显示字段
-    list_display = ['id', 'title', 'level', 'parent_id']
+    list_display = ['id', 'title', 'level', 'parent_id', 'creator']
     # 过滤条件
     list_filter = ['title']
     # 搜索字段
@@ -16,15 +16,15 @@ class EventAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
-@admin.register(Done)
-class DoneAdmin(admin.ModelAdmin):
+@admin.register(Record)
+class RecordAdmin(admin.ModelAdmin):
     # 列表页属性
     # 显示字段
-    list_display = ['id', 'title', 'start_date', 'start_time', 'duration', 'happiness', 'health', 'fulfillment', 'event', 'user']
+    list_display = ['id', 'start_datetime', 'duration', 'event', 'remarks', 'user']
     # 过滤条件
-    list_filter = ['title']
+    list_filter = ['id']
     # 搜索字段
-    search_fields = ['title']
+    search_fields = ['id']
     # 分页
     list_per_page = 10
 

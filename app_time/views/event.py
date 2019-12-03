@@ -27,7 +27,6 @@ class EventModelViewSet(ModelViewSet):
     filterset_class = EventFilter
 
 
-
 class EventView(APIView):
     def get(self, request):
         """

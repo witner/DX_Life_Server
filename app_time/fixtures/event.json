@@ -1,0 +1,18 @@
+[{
+	"model": "app_time.event",
+	"pk": 1,
+	"fields": {
+		"title": "John",
+        "level": "John",
+        "parent_id": "John",
+        "is_delete": "John",
+		"creator": "Lennon"
+	}
+}, {
+	"model": "app_time.event",
+	"pk": 2,
+	"fields": {
+		"first_name": "Paul",
+		"last_name": "McCartney"
+	}
+}]
