@@ -1,0 +1,16 @@
+[{
+	"model": "app_crm.UserInfo",
+	"pk": 1,
+	"fields": {
+		"username": "default_user",
+        "telephone": "13000000000",
+        "email": "default@qq.com",
+        "password": "hdd123456",
+		"nickname": "默认用户",
+		"sex": "M",
+		"age": 70,
+		"birthday": "1949-10-01",
+		"address": "默认地址",
+		"time_create": "1949-10-01 00:00:00"
+	}
+}]

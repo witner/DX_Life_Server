@@ -31,7 +31,7 @@ class Event(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=32, verbose_name='事件类型标题')
     level = models.IntegerField(verbose_name='事件级别', default=1)
-    parent_id = models.ForeignKey(to='Event', to_field='id', default=0, blank=True, null=True, on_delete=models.CASCADE)
+    parent_id = models.ForeignKey(to='Event', to_field='id', default=None, blank=True, null=True, on_delete=models.CASCADE)
     is_delete = models.BooleanField(verbose_name='是否删除', default=False)
     creator = models.ForeignKey(verbose_name='创建者', to='app_crm.UserInfo', to_field='id', on_delete=models.CASCADE)
 

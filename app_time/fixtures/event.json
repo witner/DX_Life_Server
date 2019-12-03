@@ -1,18 +1,73 @@
 [{
-	"model": "app_time.event",
+	"model": "app_time.Event",
 	"pk": 1,
 	"fields": {
-		"title": "John",
-        "level": "John",
-        "parent_id": "John",
-        "is_delete": "John",
-		"creator": "Lennon"
+		"title": "日常",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
 	}
 }, {
-	"model": "app_time.event",
+	"model": "app_time.Event",
 	"pk": 2,
 	"fields": {
-		"first_name": "Paul",
-		"last_name": "McCartney"
+		"title": "学习",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 3,
+	"fields": {
+		"title": "运动",
+		"level": 1,
+	    "is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 4,
+	"fields": {
+		"title": "工作",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 5,
+	"fields": {
+		"title": "关系",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 6,
+	"fields": {
+		"title": "娱乐",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 7,
+	"fields": {
+		"title": "生活",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
+	}
+}, {
+	"model": "app_time.Event",
+	"pk": 8,
+	"fields": {
+		"title": "临时",
+		"level": 1,
+		"is_delete": false,
+		"creator": 1
 	}
 }]
