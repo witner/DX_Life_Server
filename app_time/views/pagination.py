@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 from rest_framework.pagination import PageNumberPagination
 
-# class MyPagination(PageNumberPagination):
-#     page_size = 1
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 100

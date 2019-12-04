@@ -6,11 +6,16 @@ import random
 import re
 import os
 # 第三方模块
-from rest_framework.views import APIView
-from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
-# settings.configure()
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
+
+from PIL import Image, ImageDraw, ImageFont
+# 导入自定义模块
+from app_crm.models import UserInfo
+from app_crm.serializers import UserInfoModelSerializer
+# 设置环境变量
 
 
 def get_pic_code(request):
@@ -75,3 +80,12 @@ class UserLogin(APIView):
         pass
 
 
+class UserInfoModelViewSet(ModelViewSet):
+    # 查询集
+    queryset = UserInfo.objects.filter(is_delete=False).order_by('id')
+    # 序列号
+    serializer_class = UserInfoModelSerializer
+    # # 分页
+    # pagination_class = StandardResultsSetPagination
+    # # 过滤
+    # filterset_class = EventFilter

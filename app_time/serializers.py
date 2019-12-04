@@ -1,8 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# 导入系统模块
+# 第三方模块
 from rest_framework import serializers
+# 导入自定义模块
 from app_time.models import *
-from app_crm.serializers import UserInfoSerializer
+from app_crm.serializers import UserInfoModelSerializer
+
+
+class EventModelSerializer(serializers.ModelSerializer):
+    """
+    遇到问题：通过model方式定义serializers,解决自己指向自己的问题，通过depth深度控制显示父级
+    """
+    # 创建者
+    # creator = UserInfoModelSerializer()
+
+    class Meta:
+        model = Event
+        fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
+        depth = 1
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -11,7 +27,7 @@ class EventSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Event
-        fields = ('id', 'title', 'level', 'parent_id')
+        fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
         depth = 1
 
     # id = serializers.IntegerField(required=False, read_only=True)

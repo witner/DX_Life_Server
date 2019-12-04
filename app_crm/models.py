@@ -39,6 +39,8 @@ class UserInfo(models.Model):
     # # 用户对应角色
     # role = models.ManyToManyField(verbose_name='用户对应角色', to='Role', through='UserToRole',
     #                               through_fields=('user', 'role'), blank=True)
+    # 是否删除
+    is_delete = models.BooleanField(verbose_name='是否删除', default=False)
 
     def __str__(self):
         return self.username

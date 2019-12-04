@@ -11,50 +11,23 @@ from rest_framework.viewsets import ModelViewSet
 from app_time.views.pagination import StandardResultsSetPagination
 # 导入自定义模块
 from app_time.models import Event
-from app_time.serializers import EventSerializer
+from app_time.serializers import EventModelSerializer
 from app_time.views.filter import EventFilter
 # 设置环境变量
 
 
 class EventModelViewSet(ModelViewSet):
     # 查询集
-    queryset = Event.objects.all().order_by('id')
+    queryset = Event.objects.filter(is_delete=False).order_by('id')
     # 序列号
-    serializer_class = EventSerializer
+    serializer_class = EventModelSerializer
     # 分页
     pagination_class = StandardResultsSetPagination
     # 过滤
     filterset_class = EventFilter
 
 
-class EventView(APIView):
-    def get(self, request):
-        """
-        请求获取事件信息，
-        :param request: 接受请求参数【parent_id、level】
-        :return:
-        """
 
-        # 获取查询条件
-        parent_id = request.query_params.get('parent_id', 0)
-        level = request.query_params.get('level', 0)
-        try:
-            parent_id = int(parent_id)
-            level = int(level)
-        except Exception:
-            content = {'error_msg': '请求参数错误，不能为非数字'}
-            return Response(content, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            # 数据库查询
-            event_list = Event.objects.all()
-            if parent_id != 0:
-                event_list = event_list.filter(parent_id=parent_id)
-
-            if level != 0:
-                event_list = event_list.filter(level=level)
-
-            ret = EventSerializer(event_list, many=True)
-            return Response(ret.data)
 
 
 

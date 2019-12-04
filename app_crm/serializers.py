@@ -4,20 +4,16 @@ from rest_framework import serializers
 from .models import *
 
 
-class UserInfoSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    username = serializers.CharField()
-    telephone = serializers.CharField()
-    email = serializers.EmailField()
-    password = serializers.CharField()
-    nickname = serializers.CharField()
-    sex = serializers.ChoiceField(choices=UserInfo.SEX_CHOICES)
-    age = serializers.IntegerField()
-    birthday = serializers.DateField()
-    address = serializers.CharField()
-    time_create = serializers.DateTimeField()
+class UserInfoModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInfo
+        fields = "__all__"
+        depth = 1
 
     def create(self, validated_data):
         return UserInfo.objects.create(**validated_data)
+
+
+
 
 
