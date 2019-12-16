@@ -20,18 +20,28 @@ class EventModelSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
         depth = 1
 
+    def create(self, validated_data):
+        return Event.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.level = validated_data.get('level', instance.level)
+        instance.parent_id = validated_data.get('parent_id', instance.parent_id)
+        instance.is_delete = validated_data.get('is_delete', instance.is_delete)
+        instance.save()
+        return instance
+
 
 class EventSerializer(serializers.ModelSerializer):
-    """
-    遇到问题：通过model方式定义serializers,解决自己指向自己的问题，通过depth深度控制显示父级
-    """
-    class Meta:
-        model = Event
-        fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
-        depth = 1
+    id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(max_length=32)
+    level = serializers.IntegerField()
+    parent_id = EventSerializer()
+    parent_id_w = serializers.IntegerField(write_only=True)
+
 
     # id = serializers.IntegerField(required=False, read_only=True)
-    # title = serializers.CharField(max_length=32)
+    #
     # level = serializers.IntegerField()
     # # parent_id = serializers.IntegerField()
     # # parent_id = serializers.
