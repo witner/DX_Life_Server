@@ -7,7 +7,7 @@ from app_time.models import *
 class EventAdmin(admin.ModelAdmin):
     # 列表页属性
     # 显示字段
-    list_display = ['id', 'title', 'level', 'parent_id', 'creator']
+    list_display = ['id', 'title', 'level', 'parent_id', 'color', 'creator']
     # 过滤条件
     list_filter = ['title']
     # 搜索字段

@@ -52,6 +52,21 @@ class EventSerializer(serializers.Serializer):
         return instance
 
 
+class EventTreeSerializer(serializers.Serializer):
+    """
+    事件树关系序列器，
+    """
+    # 只读序列器read_only
+    id = serializers.IntegerField(read_only=True)
+    # id 只在序列化使用，故使用read_only
+    title = serializers.CharField(read_only=True, max_length=32)
+    # title 序列化和反序列化都使用，故不使用其他参数
+    level = serializers.IntegerField(read_only=True)
+    color = serializers.CharField(max_length=6, read_only=True)
+    son_event_list = EventSerializer(read_only=True, many=True)
+
+
+
 
 
 # class EventModelSerializer(serializers.ModelSerializer):

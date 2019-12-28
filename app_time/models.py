@@ -33,7 +33,7 @@ class Event(models.Model):
     level = models.IntegerField(verbose_name='事件级别', default=1)
     parent_id = models.ForeignKey(to='Event', to_field='id', default=None, blank=True, null=True, on_delete=models.CASCADE)
     is_delete = models.BooleanField(verbose_name='是否删除', default=False)
-    color = models.CharField(verbose_name="颜色配置", max_length=6, default="FFFFFF")
+    color = models.CharField(verbose_name="颜色配置", max_length=7, default="#FFFFFF")
     creator = models.ForeignKey(verbose_name='创建者', to='app_crm.UserInfo', to_field='id', on_delete=models.CASCADE)
 
     def __str__(self):
