@@ -8,49 +8,77 @@ from app_time.models import *
 from app_crm.serializers import UserInfoModelSerializer
 
 
-class EventModelSerializer(serializers.ModelSerializer):
+class EventSerializer(serializers.ModelSerializer):
     """
-    遇到问题：通过model方式定义serializers,解决自己指向自己的问题，通过depth深度控制显示父级
+    使用自定义方式定义序列器，自己定义每一个序列化和反序列化的字段
     """
-    # 创建者
-    # creator = UserInfoModelSerializer()
-
-    class Meta:
-        model = Event
-        fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
-        depth = 1
+    # 只读序列器read_only
+    id = serializers.IntegerField(read_only=True)
+    # id 只在序列化使用，故使用read_only
+    title = serializers.CharField(max_length=32)
+    # title 序列化和反序列化都使用，故不使用其他参数
+    level = serializers.IntegerField()
+    parent_id = serializers.PrimaryKeyRelatedField(read_only=True)
+    # parent_id 只在序列化使用
+    parent_id_w = serializers.IntegerField(write_only=True)
+    # parent_id_w 只在反序列化使用，故使用故使用write_only
+    color = serializers.CharField(max_length=6)
 
     def create(self, validated_data):
-        return Event.objects.create(**validated_data)
+        """
+        添加Event
+        :param validated_data:
+        :return:
+        """
+        obj = Event.objects.create(title=validated_data['title'],
+                                   level=validated_data['level'],
+                                   parent_id_id=validated_data['parent_id_w'],
+                                   color=validated_data['color'])
+        return obj
 
     def update(self, instance, validated_data):
+        """
+        修改Event
+        :param instance:
+        :param validated_data:
+        :return:
+        """
         instance.title = validated_data.get('title', instance.title)
         instance.level = validated_data.get('level', instance.level)
-        instance.parent_id = validated_data.get('parent_id', instance.parent_id)
+        instance.parent_id = validated_data.get('parent_id_w', instance.parent_id)
+        instance.color = validated_data.get('color', instance.color)
         instance.is_delete = validated_data.get('is_delete', instance.is_delete)
         instance.save()
         return instance
 
 
-class EventSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(max_length=32)
-    level = serializers.IntegerField()
-    parent_id = EventSerializer()
-    parent_id_w = serializers.IntegerField(write_only=True)
 
 
-    # id = serializers.IntegerField(required=False, read_only=True)
-    #
-    # level = serializers.IntegerField()
-    # # parent_id = serializers.IntegerField()
-    # # parent_id = serializers.
+# class EventModelSerializer(serializers.ModelSerializer):
+#     """
+#     遇到问题：通过model方式定义serializers,解决自己指向自己的问题，通过depth深度控制显示父级
+#     """
+#     # 创建者
+#     # creator = UserInfoModelSerializer()
+#
+#     class Meta:
+#         model = Event
+#         fields = ('id', 'title', 'level', 'parent_id', 'is_delete', 'creator')
+#         depth = 1
+#
+#     def create(self, validated_data):
+#         return Event.objects.create(**validated_data)
+#
+#     def update(self, instance, validated_data):
+#         instance.title = validated_data.get('title', instance.title)
+#         instance.level = validated_data.get('level', instance.level)
+#         instance.parent_id = validated_data.get('parent_id', instance.parent_id)
+#         instance.is_delete = validated_data.get('is_delete', instance.is_delete)
+#         instance.save()
+#         return instance
 
-    def create(self, validated_data):
-        obj = Event.objects.create(title=validated_data['title'],
-                                   level=validated_data['level'],
-                                   parent_id_id=validated_data['parent_id'])
-        return obj
+
+
 
 
 # class DoneSerializer(serializers.Serializer):
