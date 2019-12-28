@@ -8,7 +8,7 @@ from app_time.models import *
 from app_crm.serializers import UserInfoModelSerializer
 
 
-class EventSerializer(serializers.ModelSerializer):
+class EventSerializer(serializers.Serializer):
     """
     使用自定义方式定义序列器，自己定义每一个序列化和反序列化的字段
     """
